@@ -27,3 +27,7 @@ case
   else "No"
 end as Triangle
 from Triangle;
+Q 619....
+with cte as
+(select num from MyNumbers group by num having count(num) = 1 order by num desc)
+select case when count(num)>0 then num else null end as num from cte limit 1;
