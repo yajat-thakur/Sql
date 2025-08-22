@@ -33,3 +33,10 @@ with cte as
 select case when count(num)>0 then num else null end as num from cte limit 1;
 Q 620....
 select * from Cinema where id%2 <> 0 and description <> "boring" order by rating desc;
+Q 627....
+update Salary
+set sex=case when sex = "f" then "m"
+when sex = "m" then "f" end;
+Q 1050...
+select actor_id,director_id from ActorDirector group by director_id,actor_id having count(timestamp) >= 3; 
+
