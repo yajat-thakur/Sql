@@ -39,4 +39,5 @@ set sex=case when sex = "f" then "m"
 when sex = "m" then "f" end;
 Q 1050...
 select actor_id,director_id from ActorDirector group by director_id,actor_id having count(timestamp) >= 3; 
-
+Q 1757....
+select product_id from Products where low_fats = "Y" and recyclable = "Y";
