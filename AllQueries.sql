@@ -54,3 +54,7 @@ select  customer_id,count(*) as count_no_trans  from Visits left join Transactio
 Q 570....
 select Employee.name from Employee left join Employee as e on Employee.id = e.managerId
 group by Employee.id having count(Employee.id) >=5 ;
+Q 1934...
+select s.user_id, round(avg(if(c.action="confirmed",1,0)),2) as confirmation_rate
+from Signups as s left join Confirmations as c on s.user_id= c.user_id group by user_id;
+
