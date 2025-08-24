@@ -57,4 +57,7 @@ group by Employee.id having count(Employee.id) >=5 ;
 Q 1934...
 select s.user_id, round(avg(if(c.action="confirmed",1,0)),2) as confirmation_rate
 from Signups as s left join Confirmations as c on s.user_id= c.user_id group by user_id;
+Q 1193....
+select
+date_formate(trans_date,'%Y-%m') as month,country,count(id) as trans_count,sum(state = "approved") as approved_total_amount,sum(amount) as trans_total_amount,sum(if(state ="approved",amount,0)) as approved_total_amount;
 
