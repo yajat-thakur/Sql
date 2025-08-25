@@ -60,4 +60,23 @@ from Signups as s left join Confirmations as c on s.user_id= c.user_id group by 
 Q 1193....
 select
 date_formate(trans_date,'%Y-%m') as month,country,count(id) as trans_count,sum(state = "approved") as approved_total_amount,sum(amount) as trans_total_amount,sum(if(state ="approved",amount,0)) as approved_total_amount;
-
+Q 1907....
+with categorized as (
+  select case 
+           when income < 20000 then 'Low Salary'
+           when income between 20000 and 50000 then 'Average Salary'
+           when income > 50000 then 'High Salary'
+         end as category
+  from accounts
+),
+categories as (
+  select 'Low Salary' as category
+  union all
+  select 'Average Salary'
+  union all
+  select 'High Salary'
+)
+select c.category,count(cat.category) as accounts_count
+from categories c
+left join categorized cat on c.category=cat.category
+group by c.category;
