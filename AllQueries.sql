@@ -87,3 +87,8 @@ cte2 as (select student_id,subject_name,count(subject_name) as count
 from Examinations group by student_id, subject_name)
 select cte.student_id,cte.student_name,cte.subject_name, case when count is not null then count else 0 end as attended_exams
 from cte left join cte2 on cte.student_id  = cte2.student_id and cte.subject_name = cte2.subject_name order by cte.student_id,cte.subject_name;
+
+Q 1407....
+# Write your MySQL query statement below
+with cte as (select u.name,ifnull(sum(r.distance),0) as travelled_distance  from Users as u  left join Rides as r on u.id = r.user_id group by r.user_id order by name asc)
+select name,travelled_distance from cte order by travelled_distance desc ;
