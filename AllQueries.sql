@@ -92,3 +92,12 @@ Q 1407....
 # Write your MySQL query statement below
 with cte as (select u.name,ifnull(sum(r.distance),0) as travelled_distance  from Users as u  left join Rides as r on u.id = r.user_id group by r.user_id order by name asc)
 select name,travelled_distance from cte order by travelled_distance desc ;
+
+Q 1484...
+select sell_date, count( DISTINCT product ) as num_sold ,
+    
+    GROUP_CONCAT( DISTINCT product order by product ASC separator ',' ) as products
+    
+        FROM Activities GROUP BY sell_date order by sell_date ASC;
+
+      
